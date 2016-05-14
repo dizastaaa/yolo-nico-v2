@@ -1,22 +1,27 @@
 'use strict';
 
-
-
 app
     .controller('categoryIndex', function ($scope) {
+    })
+
+    .controller('categoryList', function ($scope, categoryProvider) {
+        $scope.categories = categoryProvider.getCategories();
+        
+    //On ajoute une fonction pour supprimer une catégorie
+       $scope.remove = function (category) {
+          categoryProvider.remove(category);
+        }
     
-    
-})
-    .controller('categoryList', function ($scope){
-    
-    
-})
-    .controller('categoryCreate', function ($scope){
-    $scope.test = 'toto';
-    
-})
-    .controller('categoryRemove', function ($scope){
-    
-    
-})
+    })
+
+    .controller('categoryCreate', function ($scope, categoryProvider) {
+        $scope.categories = categoryProvider.getCategories();
+
+        $scope.createCategory = function (category) {
+        categoryProvider.create(category);
+        }
+    })
+
+    .controller('categoryRemove', function ($scope) {
+    })
 ;
